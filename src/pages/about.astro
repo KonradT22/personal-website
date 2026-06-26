@@ -1,0 +1,294 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import { basics, experience } from '../data/profile';
+---
+
+<Base
+  title="About — Konrad Trestka"
+  description="Quantitative developer based in Minneapolis. CS + Data Science at University of Minnesota."
+>
+  <div class="wrap">
+    <Nav current="about" />
+
+    <div class="page-header">
+      <p class="eyebrow">About</p>
+      <h1>Konrad Trestka</h1>
+      <p class="bio">
+        I'm a quantitative developer at the University of Minnesota, where I'm
+        finishing a double degree in Computer Science and Data Science (May 2027).
+        Originally from Chicago; based in Minneapolis. I work across trading
+        systems, derivatives research, and the infrastructure underneath — with a
+        preference for things that have to be correct when it matters.
+      </p>
+      <p class="bio">
+        Bilingual in English and Polish.
+      </p>
+    </div>
+
+    <!-- Experience -->
+    <section class="section">
+      <p class="section-label">experience</p>
+      <div class="timeline">
+        {experience.map(e => (
+          <div class:list={['entry', { 'entry--award': e.award }]}>
+            <div class="entry-meta">
+              <span class="entry-period">{e.period}</span>
+              <span class="entry-loc">{e.location}</span>
+            </div>
+            <div class="entry-body">
+              <div class="entry-header">
+                <span class="entry-role">{e.role}</span>
+                <span class="entry-sep">—</span>
+                <span class="entry-org">{e.org}</span>
+              </div>
+              <ul class="entry-bullets">
+                {e.bullets.map(b => <li>{b}</li>)}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section">
+      <p class="section-label">education</p>
+      <div class="edu-block">
+        <div class="edu-meta">
+          <span class="entry-period">Aug 2023–May 2027</span>
+          <span class="entry-loc">Minneapolis</span>
+        </div>
+        <div class="edu-body">
+          <p class="edu-school">{basics.school}</p>
+          <p class="edu-degree">{basics.degree}</p>
+          <p class="edu-detail">
+            GPA {basics.gpa} · Dean's List
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hobbies -->
+    <section class="section">
+      <p class="section-label">outside work</p>
+      <div class="hobbies">
+        <div class="hobby">
+          <p class="hobby-label">motorcycles</p>
+          <p class="hobby-desc">
+            Riding is how I actually switch off. The margin for error keeps
+            everything else in perspective.
+          </p>
+        </div>
+        <div class="hobby">
+          <p class="hobby-label">snowboarding</p>
+          <p class="hobby-desc">
+            Midwest winters have one upside. I make the most of it.
+          </p>
+        </div>
+        <div class="hobby">
+          <p class="hobby-label">DJing</p>
+          <p class="hobby-desc">
+            Mixing as a craft — structure, flow, reading a room. Closer to
+            programming than it sounds.
+          </p>
+        </div>
+      </div>
+      <p class="photo-note">
+        <span>— photos coming</span>
+      </p>
+    </section>
+
+    <!-- Links -->
+    <section class="section contact-strip">
+      <a href={basics.github}>github</a>
+      <a href={basics.linkedin}>linkedin</a>
+      <a href={`mailto:${basics.email}`}>{basics.email}</a>
+    </section>
+
+  </div>
+</Base>
+
+<style>
+  .page-header {
+    padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(2rem, 5vw, 3.5rem);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.9rem;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.5rem;
+  }
+  .bio {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 56ch;
+    line-height: 1.75;
+    margin: 0 0 0.9rem;
+  }
+
+  .section {
+    border-top: 1px solid var(--line);
+    padding: clamp(2.5rem, 6vw, 4rem) 0;
+  }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 2rem;
+  }
+
+  /* ── timeline ─────────────────────────────────────────── */
+  .timeline { display: grid; gap: 2.5rem; }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 640px) {
+    .entry { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+
+  .entry-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-top: 0.15rem;
+  }
+  .entry-period {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .entry-loc {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+    opacity: 0.7;
+  }
+
+  .entry-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+  .entry-role {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.05rem;
+  }
+  .entry-sep { color: var(--muted); }
+  .entry-org {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .entry--award .entry-role {
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .entry-bullets {
+    margin: 0;
+    padding: 0 0 0 1.1rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .entry-bullets li {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── education ────────────────────────────────────────── */
+  .edu-block {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 640px) {
+    .edu-block { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+  .edu-school {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin: 0 0 0.2rem;
+  }
+  .edu-degree {
+    font-size: 0.93rem;
+    color: var(--muted);
+    margin: 0 0 0.4rem;
+  }
+  .edu-detail {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* ── hobbies ──────────────────────────────────────────── */
+  .hobbies {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 640px) { .hobbies { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+  .hobby-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.6rem;
+  }
+  .hobby-desc {
+    font-size: 0.93rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+  .photo-note {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    opacity: 0.5;
+    margin: 0;
+  }
+
+  /* ── contact strip ────────────────────────────────────── */
+  .contact-strip {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 2rem 0;
+  }
+  .contact-strip a {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .contact-strip a:hover { color: var(--accent); border-color: var(--accent); }
+</style>

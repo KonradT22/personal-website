@@ -1,0 +1,63 @@
+\documentclass[letterpaper,10.5pt]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\setcounter{secnumdepth}{0}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\titleformat{\section}{\large\scshape\bfseries}{}{0em}{}[\vspace{-3pt}\titlerule\vspace{-1pt}]
+\titlespacing{\section}{0pt}{7pt}{3pt}
+\setlist[itemize]{leftmargin=1.3em,itemsep=1pt,topsep=1pt,parsep=0pt,label=\textbullet}
+\newcommand{\entry}[4]{\textbf{#1}\hfill{\small #2}\\\textit{\small #3}\hfill{\small #4}\par\vspace{1pt}}
+
+\begin{document}
+
+{\centering
+{\LARGE\bfseries Konrad Trestka}\\[3pt]
+{\small Chicago, IL ~$\cdot$~ 773-606-0109 ~$\cdot$~ \href{mailto:ktrestka05@gmail.com}{ktrestka05@gmail.com} ~$\cdot$~ \href{https://github.com/KonradT22}{github.com/KonradT22} ~$\cdot$~ \href{https://www.linkedin.com/in/konrad-trestka-dev}{linkedin.com/in/konrad-trestka-dev}}\par}
+\vspace{2pt}
+
+\section{Education}
+\entry{University of Minnesota Twin Cities, College of Science and Engineering}{Minneapolis, MN}{B.S. Computer Science \& B.S. Data Science}{Expected May 2027}
+{\small GPA: 3.75, Dean's List \quad$\cdot$\quad Languages: English, Polish \\
+Relevant Coursework: Operating Systems, Machine Architecture \& Organization, Practice of Database Systems, Software Engineering}
+
+\section{Skills}
+{\small \textbf{Languages \& Scripting:} Python, Bash, SQL \\
+\textbf{Cloud \& Infrastructure:} Azure (SQL, Data Factory, Blob Storage), DigitalOcean, Docker, Linux/Ubuntu, VMware ESXi, Microsoft Entra ID (IAM), Meraki, SonicWall, VLAN/subnet, DNS (SPF/DKIM/DMARC), Nginx, rsync \\
+\textbf{Tools:} Git/GitHub, Microsoft Intune (MDM), systemd, cron}
+
+\section{Experience}
+\entry{Data Engineer Intern}{Sep 2025 -- Present}{PURIS}{Minneapolis, MN}
+\begin{itemize}
+  \item Led an infrastructure modernization initiative across multiple production sites, bringing networking, server workloads, and identity management in-house and off a legacy MSP.
+  \item Migrated production Docker workloads to new Ubuntu servers (SHA-256-verified 3.2 GB backups, staged zero-loss cutover) and evaluated VMware ESXi virtualization hosts.
+  \item Discovered and mapped multi-site network topology; coordinated a SonicWall $\rightarrow$ Meraki MX85 firewall cutover and simplified VLAN/subnet design.
+  \item Designed dynamic Microsoft Entra security groups from HRIS attributes for automated, role- and location-based access control.
+  \item Hardened DNS and email security (SPF/DKIM/DMARC) during a registrar-to-Cloudflare consolidation.
+  \item Assessed production power resilience after an outage, mapping critical servers, firewalls, switches, and network gear to battery-backed UPS coverage.
+\end{itemize}
+
+\entry{Software Engineer Intern}{May 2024 -- Dec 2024}{Fine Global Assets}{Chicago, IL}
+\begin{itemize}
+  \item Built and deployed full-stack web applications (React, Node.js) with Git/GitHub version control.
+\end{itemize}
+
+\section{Projects \& Awards}
+\entry{Cloud-Hosted Trading Engine}{}{DigitalOcean, Python, Linux}{}
+\begin{itemize}
+  \item Architected and deployed cloud infrastructure for a fully automated trading application on DigitalOcean, using asynchronous REST polling and Linux cron fail-safes for high availability under strict API rate limits (1st place, FMA competition, judged by DRW \& Cargill).
+\end{itemize}
+
+\entry{AJAP --- Self-Hosted Service}{}{Python, Linux, systemd, SQLite}{}
+\begin{itemize}
+  \item Built a self-hosted pipeline running as an always-on Linux systemd service with scheduled jobs, persistent state, and automated alerting.
+\end{itemize}
+
+\section{Additional}
+{\small Dean's List \quad$\cdot$\quad Google Developer Student Club, Social Coding}
+
+\end{document}

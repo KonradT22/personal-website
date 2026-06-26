@@ -1,0 +1,73 @@
+\documentclass[letterpaper,10.5pt]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\setcounter{secnumdepth}{0}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\titleformat{\section}{\large\scshape\bfseries}{}{0em}{}[\vspace{-3pt}\titlerule\vspace{-1pt}]
+\titlespacing{\section}{0pt}{7pt}{3pt}
+\setlist[itemize]{leftmargin=1.3em,itemsep=1pt,topsep=1pt,parsep=0pt,label=\textbullet}
+\newcommand{\entry}[4]{\textbf{#1}\hfill{\small #2}\\\textit{\small #3}\hfill{\small #4}\par\vspace{1pt}}
+
+\begin{document}
+
+{\centering
+{\LARGE\bfseries Konrad Trestka}\\[3pt]
+{\small Chicago, IL ~$\cdot$~ 773-606-0109 ~$\cdot$~ \href{mailto:ktrestka05@gmail.com}{ktrestka05@gmail.com} ~$\cdot$~ \href{https://github.com/KonradT22}{github.com/KonradT22} ~$\cdot$~ \href{https://www.linkedin.com/in/konrad-trestka-dev}{linkedin.com/in/konrad-trestka-dev}}\par}
+\vspace{2pt}
+
+\section{Education}
+\entry{University of Minnesota Twin Cities, College of Science and Engineering}{Minneapolis, MN}{B.S. Computer Science \& B.S. Data Science}{Expected May 2027}
+{\small GPA: 3.75, Dean's List \quad$\cdot$\quad Languages: English, Polish \\
+Relevant Coursework: Data Structures \& Algorithms, Machine Architecture \& Organization, Operating Systems, Software Engineering, Program Design \& Development, Practice of Database Systems}
+
+\section{Skills}
+{\small \textbf{Languages:} Python, Java, C/C++, JavaScript/TypeScript, SQL, Ruby, OCaml \\
+\textbf{Frameworks \& Web:} React, Node.js, Flask, Ruby on Rails, HTML/CSS, REST APIs \\
+\textbf{Tools \& Foundations:} Git/GitHub, Docker, Linux/Ubuntu, Azure SQL, SQLite, OOP, data structures \& algorithms}
+
+\section{Experience}
+\entry{Undergraduate Student Researcher}{Jun 2026 -- Present}{University of Minnesota}{Minneapolis, MN}
+\begin{itemize}
+  \item Built a neural-network options-pricing system in Python (PyTorch), training a surrogate model and engineering guardrails that fall back to a baseline model on anomalous inputs.
+  \item Ran large-scale simulations on university supercomputers (HPC/SLURM) and evaluated system accuracy, latency, and stability.
+\end{itemize}
+
+\entry{Data Engineer Intern}{Sep 2025 -- Present}{PURIS}{Minneapolis, MN}
+\begin{itemize}
+  \item Developed a Ruby on Rails incident-logging web application with Microsoft Entra SSO for internal operations teams.
+  \item Built automated ETL pipelines in Python and Azure Data Factory, parsing REST/JSON payloads into Azure SQL with idempotent upserts via stored procedures.
+  \item Containerized and migrated production workloads with Docker on Linux, with SHA-256-verified backups and a staged, zero-downtime cutover.
+\end{itemize}
+
+\entry{Software Engineer Intern}{May 2024 -- Dec 2024}{Fine Global Assets}{Chicago, IL}
+\begin{itemize}
+  \item Designed and built the company website (React, Node.js, Figma), improving user engagement by 25\% and retention by 15\%, working directly with the CEO.
+  \item Integrated the Shopify API to launch an e-commerce platform for a company affiliate.
+\end{itemize}
+
+\section{Projects}
+\entry{Cloud-Hosted Algorithmic Trading Engine}{1st Place, FMA Competition}{Python, Alpaca API, DigitalOcean, Linux}{}
+\begin{itemize}
+  \item Engineered a fully automated, event-driven trading system in Python deployed on DigitalOcean, with asynchronous REST polling and Linux-based cron fail-safes.
+  \item Implemented automated risk controls and circuit breakers; placed 1st of all teams (judged by DRW \& Cargill) with a 0.00\% maximum drawdown in live forward-testing.
+\end{itemize}
+
+\entry{Gopher Major Planner}{}{React, Node.js, Vite, Tailwind}{}
+\begin{itemize}
+  \item Built a full-stack academic-planning web application integrating a university course API to map degree requirements and course overlap.
+\end{itemize}
+
+\entry{AJAP --- Job-Search Command Center}{}{Python, Flask, SQLite, APScheduler}{}
+\begin{itemize}
+  \item Built a full-stack application with a SQLite backend, a live Flask dashboard, scheduled background jobs, and LLM-based classification of ingested data.
+\end{itemize}
+
+\section{Awards \& Activities}
+{\small Dean's List \quad$\cdot$\quad Google Developer Student Club, Social Coding \quad$\cdot$\quad Algorithmic Trading Backtester (Python, pandas)}
+
+\end{document}

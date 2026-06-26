@@ -1,0 +1,61 @@
+\documentclass[letterpaper,10.5pt]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\setcounter{secnumdepth}{0}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\titleformat{\section}{\large\scshape\bfseries}{}{0em}{}[\vspace{-3pt}\titlerule\vspace{-1pt}]
+\titlespacing{\section}{0pt}{7pt}{3pt}
+\setlist[itemize]{leftmargin=1.3em,itemsep=1pt,topsep=1pt,parsep=0pt,label=\textbullet}
+\newcommand{\entry}[4]{\textbf{#1}\hfill{\small #2}\\\textit{\small #3}\hfill{\small #4}\par\vspace{1pt}}
+
+\begin{document}
+
+{\centering
+{\LARGE\bfseries Konrad Trestka}\\[3pt]
+{\small Chicago, IL ~$\cdot$~ 773-606-0109 ~$\cdot$~ \href{mailto:ktrestka05@gmail.com}{ktrestka05@gmail.com} ~$\cdot$~ \href{https://github.com/KonradT22}{github.com/KonradT22} ~$\cdot$~ \href{https://www.linkedin.com/in/konrad-trestka-dev}{linkedin.com/in/konrad-trestka-dev}}\par}
+\vspace{2pt}
+
+\section{Education}
+\entry{University of Minnesota Twin Cities, College of Science and Engineering}{Minneapolis, MN}{B.S. Computer Science \& B.S. Data Science}{Expected May 2027}
+{\small GPA: 3.75, Dean's List \quad$\cdot$\quad Languages: English, Polish \\
+Relevant Coursework: Applied Machine Learning, Optimization for Machine Learning, Operating Systems, Software Engineering, Practice of Database Systems}
+
+\section{Skills}
+{\small \textbf{Languages:} Python, Bash, SQL \\
+\textbf{ML \& Data:} PyTorch, ML inference pipelines, model monitoring \& fallback, LLM APIs, pandas, feature/data pipelines \\
+\textbf{Ops \& Cloud:} Docker, Docker Compose, Linux/Ubuntu, systemd, cron, APScheduler, DigitalOcean, Azure (Data Factory, SQL), REST APIs, Nginx, Git/GitHub}
+
+\section{Experience}
+\entry{Undergraduate Student Researcher, Quantitative Derivatives}{Jun 2026 -- Present}{University of Minnesota}{Minneapolis, MN}
+\begin{itemize}
+  \item Built a dual-lane model inference system: a fast ANN surrogate with automatic fallback to a slower baseline model when no-arbitrage (SVI/SSVI) checks flag out-of-distribution inputs --- model monitoring and safe degradation built into the serving path.
+  \item Generated training data via Monte Carlo simulation on HPC (SLURM); measured latency, accuracy, and stability under streaming, real-time inference.
+\end{itemize}
+
+\entry{Data Engineer Intern}{Sep 2025 -- Present}{PURIS}{Minneapolis, MN}
+\begin{itemize}
+  \item Built and scheduled automated ETL pipelines (Azure Data Factory $\rightarrow$ Azure SQL) triggering daily with idempotent upserts.
+  \item Migrated production Docker container workloads to new Ubuntu servers, with SHA-256-verified backups and a staged, zero-loss cutover.
+\end{itemize}
+
+\section{Projects \& Awards}
+\entry{Cloud-Hosted Trading Engine}{}{Python, DigitalOcean, Alpaca API, Linux}{}
+\begin{itemize}
+  \item Deployed a fully automated, event-driven trading system on DigitalOcean with automated risk controls, circuit breakers, and Linux-based cron fail-safes; achieved a 0.00\% maximum drawdown in live forward-testing (1st place, FMA competition, judged by DRW \& Cargill).
+  \item Built asynchronous REST polling and runtime monitoring to handle data stalls and API rate limits in live execution.
+\end{itemize}
+
+\entry{AJAP --- Automated Classification Pipeline}{}{Python, systemd, APScheduler, SQLite, LLM API}{}
+\begin{itemize}
+  \item Self-hosted ingest $\rightarrow$ classify (LLM) $\rightarrow$ store $\rightarrow$ alert pipeline running as a Linux systemd daemon with scheduled jobs, persistent state, idempotent processing, and batched alerting/observability.
+\end{itemize}
+
+\section{Additional}
+{\small Dean's List \quad$\cdot$\quad Google Developer Student Club, Social Coding}
+
+\end{document}

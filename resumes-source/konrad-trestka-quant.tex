@@ -1,0 +1,73 @@
+\documentclass[letterpaper,10.5pt]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{charter}        % comment this line out if it fails to compile
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\setcounter{secnumdepth}{0}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\titleformat{\section}{\large\scshape\bfseries}{}{0em}{}[\vspace{-3pt}\titlerule\vspace{-1pt}]
+\titlespacing{\section}{0pt}{7pt}{3pt}
+\setlist[itemize]{leftmargin=1.3em,itemsep=1pt,topsep=1pt,parsep=0pt,label=\textbullet}
+
+\newcommand{\entry}[4]{\textbf{#1}\hfill{\small #2}\\\textit{\small #3}\hfill{\small #4}\par\vspace{1pt}}
+
+\begin{document}
+
+{\centering
+{\LARGE\bfseries Konrad Trestka}\\[3pt]
+{\small Chicago, IL ~$\cdot$~ 773-606-0109 ~$\cdot$~ \href{mailto:ktrestka05@gmail.com}{ktrestka05@gmail.com} ~$\cdot$~ \href{https://github.com/KonradT22}{github.com/KonradT22} ~$\cdot$~ \href{https://www.linkedin.com/in/konrad-trestka-dev}{linkedin.com/in/konrad-trestka-dev}}\par}
+\vspace{2pt}
+
+\section{Education}
+\entry{University of Minnesota Twin Cities, College of Science and Engineering}{Minneapolis, MN}{B.S. Computer Science \& B.S. Data Science}{Expected May 2027}
+{\small GPA: 3.75, Dean's List \quad$\cdot$\quad Languages: English, Polish \\
+Relevant Coursework: Data Structures \& Algorithms, Machine Architecture \& Organization, Optimization for Machine Learning, Applied Machine Learning, Operating Systems, Practice of Database Systems}
+
+\section{Skills}
+{\small \textbf{Languages:} Python, C/C++, Java, SQL, R, OCaml, JavaScript/TypeScript, Bash \\
+\textbf{Quant \& Systems:} event-driven systems, backtesting, market-data pipelines, risk controls (stop-losses, exposure caps, circuit breakers), Monte Carlo, time-series analysis \\
+\textbf{Tools \& Libraries:} pandas, NumPy, yfinance, Matplotlib, Alpaca API, Docker, Linux/Ubuntu, DigitalOcean, Git/GitHub}
+
+\section{Quantitative \& Trading Experience}
+\entry{1st Place --- Quantitative Trading Competition}{Apr 2026}{Financial Mathematics Association}{Judged by DRW \& Cargill}
+\begin{itemize}
+  \item Placed 1st of all competing teams in a 10-day live algorithmic trading competition by engineering and deploying a fully automated, cloud-hosted (DigitalOcean) event-driven trading engine in Python on the Alpaca brokerage API.
+  \item Developed a two-sleeve strategy capturing Post-Earnings Announcement Drift (PEAD) using intraday VWAP, 20-day SMA, and custom momentum scoring.
+  \item Programmed strict capital-preservation controls --- ATR-adjusted stop-losses, a 50\% gross-exposure cap, and automated circuit breakers --- achieving a 0.00\% maximum drawdown in live forward-testing.
+  \item Built asynchronous REST polling for 1-minute market data and Linux-based cron fail-safes to handle zero-volume stalls and API rate limits; presented and defended an After-Action Report to industry portfolio managers.
+\end{itemize}
+
+\entry{Undergraduate Student Researcher, Quantitative Derivatives}{Jun 2026 -- Present}{University of Minnesota}{Minneapolis, MN}
+\begin{itemize}
+  \item Designed a dual-lane options pricing system leveraging an Artificial Neural Network (ANN) as a fast surrogate for a 4-factor Markovian Path-Dependent Volatility (PDV) model.
+  \item Engineered dynamic no-arbitrage SVI/SSVI guardrails that automatically revert the ANN to the baseline PDV model on unfamiliar or arbitrage-violating data.
+  \item Executed Monte Carlo simulations on university supercomputers (HPC/SLURM) over large datasets of simulated S\&P 500 market states.
+\end{itemize}
+
+\entry{Data Engineer Intern}{Sep 2025 -- Present}{PURIS}{Minneapolis, MN}
+\begin{itemize}
+  \item Architected automated ETL pipelines (Azure Data Factory $\rightarrow$ Azure SQL) processing daily REST/JSON payloads with idempotent upserts via stored procedures.
+  \item Migrated production Docker container workloads to newly provisioned Ubuntu servers with verified backups and a staged, zero-loss cutover.
+\end{itemize}
+
+\section{Projects}
+\entry{Algorithmic Trading Backtester}{}{Python, pandas, yfinance, Matplotlib}{}
+\begin{itemize}
+  \item Built a scalable, object-oriented backtesting engine simulating algorithmic strategies over historical financial time-series, dynamically computing P\&L and total equity.
+  \item Engineered a data pipeline to ingest, clean, and structure market data into pandas DataFrames, with an optional news-sentiment sleeve to bias signals.
+\end{itemize}
+
+\entry{AJAP --- Automated Job-Search Pipeline}{}{Python, Flask, APScheduler, SQLite}{}
+\begin{itemize}
+  \item Self-hosted event-driven system that ingests roles from multiple sources, classifies them via an LLM API, and fires batched alerts; runs continuously as a scheduled Linux daemon.
+\end{itemize}
+
+\section{Activities}
+{\small Google Developer Student Club \quad$\cdot$\quad Social Coding \quad$\cdot$\quad Ski \& Snowboarding Club}
+
+\end{document}

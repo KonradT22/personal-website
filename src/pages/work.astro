@@ -1,0 +1,136 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import { projects } from '../data/profile';
+---
+
+<Base title="Work — Konrad Trestka">
+  <div class="wrap">
+    <Nav current="work" />
+
+    <div class="page-header">
+      <p class="eyebrow">Quantitative developer · Minneapolis</p>
+      <h1>Work</h1>
+      <p class="intro">
+        Projects across quant, ML, data engineering, and systems — each built to
+        solve a specific problem.
+      </p>
+    </div>
+
+    <div class="projects">
+      {projects.map(p => (
+        <article class="fig-card">
+          <div class="fig-meta">
+            <span class="fig-num">{p.fig}</span>
+            <span class="lanes">{p.lanes.join(' · ')}</span>
+          </div>
+          <h2 class="fig-title">{p.title}</h2>
+          <p class="fig-stack">{p.stack}</p>
+          <p class="fig-desc">{p.description}</p>
+          {p.github && (
+            <a href={p.github} class="fig-link">github →</a>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page-header {
+    padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(2rem, 5vw, 3.5rem);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.9rem;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem;
+  }
+  .intro {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 48ch;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .projects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    padding-bottom: clamp(3rem, 7vw, 5rem);
+  }
+  @media (max-width: 680px) { .projects { grid-template-columns: 1fr; } }
+
+  /* featured projects (first two) get full width */
+  .fig-card:nth-child(1),
+  .fig-card:nth-child(2) {
+    /* stay in normal grid flow */
+  }
+
+  .fig-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .fig-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  .fig-num {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  .lanes {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+  }
+  .fig-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin: 0 0 0.35rem;
+    line-height: 1.25;
+  }
+  .fig-stack {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+  .fig-desc {
+    font-size: 0.93rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 0 0 1.5rem;
+    flex: 1;
+  }
+  .fig-link {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-decoration: none;
+    align-self: flex-start;
+    transition: color 0.15s;
+  }
+  .fig-link:hover { color: var(--accent); }
+</style>

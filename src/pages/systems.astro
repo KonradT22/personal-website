@@ -2,34 +2,34 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import VolSurface from '../components/VolSurface.astro';
-import { basics, proofPoints, laneConfigs, skills } from '../data/profile';
-import { getCollection } from 'astro:content';
+import { basics, laneConfigs, skills } from '../data/profile';
 
-const lane = laneConfigs.quant;
-const posts = (await getCollection('writing'))
-  .filter(p => !p.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+const lane = laneConfigs.systems;
+const emphasizedSkills = lane.emphasizedSkillKeys.map(k => ({
+  label: k === 'dataEng' ? 'data engineering'
+       : k === 'systems' ? 'systems / infra'
+       : k === 'quant'   ? 'quant / research'
+       : k,
+  items: skills[k],
+}));
 ---
 
-<Base title="Konrad Trestka — Quantitative Developer">
+<Base
+  title="Systems & Infrastructure — Konrad Trestka"
+  description={lane.sub}
+>
   <div class="wrap">
-
-    <Nav currentLane="quant" />
+    <Nav currentLane="systems" />
 
     <!-- ── Hero ─────────────────────────────────────────── -->
     <section class="hero">
       <div class="hero-text">
-        <p class="eyebrow">Quantitative developer · Minneapolis</p>
+        <p class="eyebrow">{lane.eyebrow}</p>
         <h1>Konrad<br />Trestka</h1>
-        <p class="sub">
-          I build <b>trading systems, derivatives research, and the infrastructure
-          beneath both</b> — and I care about what they do when the market
-          doesn't cooperate.
-        </p>
+        <p class="sub">{lane.sub}</p>
 
         <ul class="proof">
-          {proofPoints.map(p => (
+          {lane.proofPoints.map(p => (
             <li>
               <span class="tick">{p.n}</span>
               <p>{p.segments.map(s => s.bold ? <span class="big">{s.text}</span> : s.text)}</p>
@@ -48,9 +48,9 @@ const posts = (await getCollection('writing'))
       <VolSurface />
     </section>
 
-    <!-- ── Selected Work ────────────────────────────────── -->
+    <!-- ── Featured Work ─────────────────────────────────── -->
     <section class="section">
-      <p class="section-label">selected work</p>
+      <p class="section-label">selected work — systems & infrastructure</p>
       <div class="work-grid">
         {lane.featuredItems.map(item => (
           <article class="fig-card">
@@ -71,56 +71,20 @@ const posts = (await getCollection('writing'))
       <a href="/work" class="all-link">all work →</a>
     </section>
 
-    <!-- ── Capabilities ──────────────────────────────────── -->
+    <!-- ── Emphasized Skills ──────────────────────────────── -->
     <section class="section">
-      <p class="section-label">capabilities</p>
-      <div class="cap-grid">
-        <div class="skill-lane">
-          <p class="lane-name">quant / research</p>
-          <ul class="lane-list">
-            {skills.quant.map(s => <li>{s}</li>)}
-          </ul>
-        </div>
-        <div class="skill-lane">
-          <p class="lane-name">machine learning</p>
-          <ul class="lane-list">
-            {skills.ml.map(s => <li>{s}</li>)}
-          </ul>
-        </div>
-        <div class="skill-lane">
-          <p class="lane-name">data engineering</p>
-          <ul class="lane-list">
-            {skills.dataEng.map(s => <li>{s}</li>)}
-          </ul>
-        </div>
-        <div class="skill-lane">
-          <p class="lane-name">systems / infra</p>
-          <ul class="lane-list">
-            {skills.systems.map(s => <li>{s}</li>)}
-          </ul>
-        </div>
+      <p class="section-label">skills — this lane</p>
+      <div class="skills-grid">
+        {emphasizedSkills.map(group => (
+          <div class="skill-group">
+            <p class="skill-label">{group.label}</p>
+            <ul class="skill-list">
+              {group.items.map(s => <li>{s}</li>)}
+            </ul>
+          </div>
+        ))}
       </div>
     </section>
-
-    <!-- ── Latest Writing ────────────────────────────────── -->
-    {posts.length > 0 && (
-      <section class="section">
-        <p class="section-label">latest writing</p>
-        <ul class="writing-list">
-          {posts.map(p => (
-            <li>
-              <a href={`/writing/${p.id}`} class="post-link">
-                <span class="post-title">{p.data.title}</span>
-                <span class="post-date">
-                  {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-        <a href="/writing" class="all-link">all writing →</a>
-      </section>
-    )}
 
     <!-- ── Contact ───────────────────────────────────────── -->
     <section class="section">
@@ -171,8 +135,8 @@ const posts = (await getCollection('writing'))
     color: var(--muted);
     max-width: 34ch;
     margin: 0 0 2rem;
+    line-height: 1.65;
   }
-  .sub b { color: var(--text); font-weight: 500; }
 
   .proof {
     list-style: none;
@@ -193,8 +157,8 @@ const posts = (await getCollection('writing'))
     color: var(--accent);
     padding-top: 0.35rem;
   }
-  .proof p { margin: 0; font-size: 0.98rem; }
-  .big { font-family: var(--serif); font-weight: 600; }
+  .proof p { margin: 0; font-size: 0.98rem; color: var(--muted); line-height: 1.65; }
+  .big { font-family: var(--serif); font-weight: 600; color: var(--text); }
 
   .links {
     display: flex;
@@ -246,6 +210,9 @@ const posts = (await getCollection('writing'))
     gap: 1.25rem;
   }
   @media (max-width: 680px) { .work-grid { grid-template-columns: 1fr; } }
+
+  /* first card (PURIS) full width */
+  .fig-card:first-child { grid-column: 1 / -1; }
 
   .fig-card {
     border: 1px solid var(--line);
@@ -313,16 +280,15 @@ const posts = (await getCollection('writing'))
   }
   .fig-link:hover { color: var(--accent); }
 
-  /* ── capabilities grid ────────────────────────────────── */
-  .cap-grid {
+  /* ── skills ───────────────────────────────────────────── */
+  .skills-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
-  @media (max-width: 860px) { .cap-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 480px) { .cap-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 480px) { .skills-grid { grid-template-columns: 1fr; } }
 
-  .lane-name {
+  .skill-label {
     font-family: var(--mono);
     font-size: 0.7rem;
     letter-spacing: 0.1em;
@@ -330,44 +296,17 @@ const posts = (await getCollection('writing'))
     color: var(--accent);
     margin: 0 0 1rem;
   }
-  .lane-list {
+  .skill-list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
     gap: 0.45rem;
   }
-  .lane-list li {
+  .skill-list li {
     font-size: 0.88rem;
     color: var(--muted);
     line-height: 1.4;
-  }
-
-  /* ── writing list ─────────────────────────────────────── */
-  .writing-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .post-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1.5rem;
-    padding: 0.9rem 0;
-    border-bottom: 1px solid var(--line);
-    text-decoration: none;
-    color: inherit;
-  }
-  .writing-list li:first-child .post-link { border-top: 1px solid var(--line); }
-  .post-link:hover .post-title { color: var(--accent); }
-  .post-title { font-size: 0.98rem; transition: color 0.15s; }
-  .post-date {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--muted);
-    white-space: nowrap;
-    flex-shrink: 0;
   }
 
   /* ── contact ──────────────────────────────────────────── */

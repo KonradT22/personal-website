@@ -1,0 +1,166 @@
+<!-- Implied-volatility surface figure. Reused across lane pages. -->
+<div class="figure">
+  <div class="panel">
+    <canvas id="surf"></canvas>
+    <div class="axes">
+      <span class="z">σ — implied vol</span>
+      <span class="y">tenor</span>
+      <span class="x">moneyness</span>
+    </div>
+  </div>
+  <div class="cap">
+    <span>fig.01 — implied volatility surface</span>
+    <span class="live"><span class="dot"></span>live</span>
+  </div>
+</div>
+
+<style>
+  .panel {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--panel);
+    overflow: hidden;
+    aspect-ratio: 4 / 3.4;
+  }
+  canvas { display: block; width: 100%; height: 100%; }
+  .axes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    color: var(--muted);
+  }
+  .axes .z { position: absolute; left: 12px; top: 12px; }
+  .axes .x { position: absolute; right: 12px; bottom: 10px; }
+  .axes .y { position: absolute; left: 12px; bottom: 10px; }
+  .cap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.7rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+  .live { display: inline-flex; align-items: center; gap: 0.45rem; }
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+  @media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+</style>
+
+<script>
+(function () {
+  const canvas = /** @type {HTMLCanvasElement} */ (document.getElementById('surf'));
+  const ctx = canvas.getContext('2d');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // plasma-ish colormap (accent pulled from --accent #fca636)
+  const stops = [
+    [0.00, [13,  8,  135]],
+    [0.25, [126, 3,  168]],
+    [0.50, [177, 42, 144]],
+    [0.72, [225, 100, 98]],
+    [0.88, [252, 166, 54]],
+    [1.00, [240, 249, 33]],
+  ];
+  function cmap(t) {
+    t = Math.max(0, Math.min(1, t));
+    for (let i = 1; i < stops.length; i++) {
+      if (t <= stops[i][0]) {
+        const a = stops[i - 1], b = stops[i];
+        const f = (t - a[0]) / (b[0] - a[0]);
+        return [
+          Math.round(a[1][0] + (b[1][0] - a[1][0]) * f),
+          Math.round(a[1][1] + (b[1][1] - a[1][1]) * f),
+          Math.round(a[1][2] + (b[1][2] - a[1][2]) * f),
+        ];
+      }
+    }
+    return stops[stops.length - 1][1];
+  }
+
+  const N = 24;
+  let W = 0, H = 0, dpr = 1;
+
+  function resize() {
+    const r = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = r.width; H = r.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  window.addEventListener('resize', resize);
+
+  function volHeight(u, v, t) {
+    const smile   =  0.55 * u * u;
+    const skew    = -0.28 * u;
+    const term    =  0.30 * (1 - v);
+    const breathe =  0.10 * Math.sin(2.4 * u + t) * Math.cos(1.8 * v - t * 0.6);
+    return 0.15 + smile + skew + term + breathe;
+  }
+
+  function project(x, y, z, yaw, pitch) {
+    const cx = Math.cos(yaw), sx = Math.sin(yaw);
+    const rx = x * cx - z * sx, rz = x * sx + z * cx;
+    const cy = Math.cos(pitch), sy = Math.sin(pitch);
+    const ry = y * cy - rz * sy, rz2 = y * sy + rz * cy;
+    const d = 3.4, s = d / (d + rz2);
+    return { sx: rx * s, sy: -ry * s, depth: rz2 };
+  }
+
+  function frame(now) {
+    const t     = reduce ? 0.6 : now * 0.0006;
+    const yaw   = reduce ? -0.5 : -0.5 + 0.32 * Math.sin(now * 0.00018);
+    const pitch = 0.62;
+
+    ctx.clearRect(0, 0, W, H);
+    const scale = Math.min(W, H) * 0.42;
+    const ox = W / 2, oy = H * 0.54;
+
+    const pts = [];
+    let hmin = Infinity, hmax = -Infinity;
+    for (let i = 0; i < N; i++) {
+      pts[i] = [];
+      for (let j = 0; j < N; j++) {
+        const u = (i / (N - 1)) * 2 - 1;
+        const v = j / (N - 1);
+        const h = volHeight(u, v, t);
+        if (h < hmin) hmin = h;
+        if (h > hmax) hmax = h;
+        const p = project(u, h - 0.55, v * 2 - 1, yaw, pitch);
+        pts[i][j] = { x: ox + p.sx * scale, y: oy + p.sy * scale, depth: p.depth, h };
+      }
+    }
+    const norm = h => (h - hmin) / (hmax - hmin + 1e-6);
+
+    function seg(a, b) {
+      const t01  = norm((a.h + b.h) / 2);
+      const c    = cmap(t01);
+      const dd   = (a.depth + b.depth) / 2;
+      const alpha = Math.max(0.18, Math.min(0.95, 0.75 - dd * 0.32));
+      ctx.strokeStyle = `rgba(${c[0]},${c[1]},${c[2]},${alpha})`;
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+
+    ctx.lineWidth = 1;
+    for (let i = 0; i < N; i++)
+      for (let j = 0; j < N; j++) {
+        if (i < N - 1) seg(pts[i][j], pts[i + 1][j]);
+        if (j < N - 1) seg(pts[i][j], pts[i][j + 1]);
+      }
+
+    requestAnimationFrame(frame);
+  }
+
+  resize();
+  requestAnimationFrame(frame);
+})();
+</script>

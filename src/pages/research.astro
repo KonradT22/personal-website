@@ -1,0 +1,282 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import { basics } from '../data/profile';
+---
+
+<Base
+  title="Research — Konrad Trestka"
+  description="Undergraduate derivatives research: neural surrogates for path-dependent volatility, with no-arbitrage guardrails."
+>
+  <div class="wrap">
+    <Nav current="research" />
+
+    <div class="page-header">
+      <p class="eyebrow">Derivatives research · University of Minnesota</p>
+      <h1>Research</h1>
+      <p class="intro">
+        Quantitative work in derivatives pricing and volatility. Advised by
+        John Dodson; runs on the university supercomputer (SLURM).
+      </p>
+    </div>
+
+    <!-- Primary: vol surrogate -->
+    <article class="research-block primary">
+      <div class="r-meta">
+        <span class="fig-num">fig.03</span>
+        <span class="lanes">quant · ML</span>
+      </div>
+      <h2>Neural Surrogates for Path-Dependent Volatility</h2>
+      <p class="r-stack">Python · PyTorch · SLURM / HPC · S&amp;P 500 options</p>
+
+      <div class="r-body">
+        <p>
+          Standard local-vol and stochastic-vol models price options in milliseconds.
+          Path-dependent volatility (PDV) models are more accurate — especially for
+          path-sensitive exotics — but orders of magnitude slower. The goal here is
+          a fast <em>surrogate</em>: an ANN trained to mimic the slow 4-factor
+          Markovian PDV model's output, cutting pricing time while preserving
+          accuracy.
+        </p>
+        <p>
+          The surrogate is constrained by no-arbitrage conditions expressed as
+          SVI/SSVI guardrails. When the surrogate's output drifts outside those
+          bounds under stress, the system fails back to the slow model automatically.
+          This keeps the surrogate fast in normal regimes and correct in
+          tail scenarios.
+        </p>
+        <p>
+          Trained and evaluated on S&amp;P 500 options data. Compute runs on
+          the University of Minnesota supercomputer via SLURM job scheduling.
+        </p>
+      </div>
+
+      <div class="r-details">
+        <div class="r-detail">
+          <span class="d-label">model family</span>
+          <span class="d-val">4-factor Markovian PDV</span>
+        </div>
+        <div class="r-detail">
+          <span class="d-label">surrogate type</span>
+          <span class="d-val">feed-forward ANN</span>
+        </div>
+        <div class="r-detail">
+          <span class="d-label">no-arb guardrails</span>
+          <span class="d-val">SVI / SSVI</span>
+        </div>
+        <div class="r-detail">
+          <span class="d-label">underlying</span>
+          <span class="d-val">S&amp;P 500 options</span>
+        </div>
+        <div class="r-detail">
+          <span class="d-label">compute</span>
+          <span class="d-val">University of Minnesota HPC (SLURM)</span>
+        </div>
+        <div class="r-detail">
+          <span class="d-label">advisor</span>
+          <span class="d-val">John Dodson</span>
+        </div>
+      </div>
+
+      <a href="https://github.com/KonradT22/VolatilityIsMostlyPathDependent" class="r-link">
+        github →
+      </a>
+    </article>
+
+    <!-- Secondary: trading engine as applied validation -->
+    <article class="research-block secondary">
+      <div class="r-meta">
+        <span class="fig-num">fig.02</span>
+        <span class="lanes">quant · systems/infra · data eng</span>
+      </div>
+      <h2>Applied: Quantitative Trading Engine</h2>
+      <p class="r-stack">Python · Alpaca API · DigitalOcean · Linux</p>
+
+      <div class="r-body">
+        <p>
+          The engine that won the FMA Quantitative Trading Competition —
+          judged by professionals from DRW and Cargill. A two-sleeve PEAD
+          strategy with intraday VWAP, 20-day SMA, and momentum scoring.
+          Risk controls: ATR-adjusted stops, 50% gross exposure cap,
+          circuit breakers. Live-tested, 0.00% max drawdown.
+        </p>
+        <p>
+          Where the vol research is about pricing, this engine is about
+          execution — the other half of a derivatives workflow. Async REST
+          polling for 1-minute data, Linux cron fail-safes, deployed on
+          DigitalOcean.
+        </p>
+      </div>
+
+      <div class="result">
+        <span class="result-stat">1st place</span>
+        <span class="result-detail">FMA Quantitative Trading Competition · judged by DRW &amp; Cargill · 0.00% max drawdown</span>
+      </div>
+    </article>
+
+    <div class="contact-strip">
+      <p>
+        Questions about the research —
+        <a href={`mailto:${basics.email}`}>{basics.email}</a>
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page-header {
+    padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(2rem, 5vw, 3.5rem);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.9rem;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem;
+  }
+  .intro {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 48ch;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .research-block {
+    border-top: 1px solid var(--line);
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
+  }
+  .research-block.secondary {
+    border-color: var(--line);
+  }
+
+  .r-meta {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .fig-num {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+  .lanes {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    letter-spacing: -0.01em;
+    margin: 0 0 0.4rem;
+    line-height: 1.15;
+  }
+  .r-stack {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin: 0 0 1.75rem;
+  }
+
+  .r-body {
+    max-width: 64ch;
+    margin-bottom: 2rem;
+  }
+  .r-body p {
+    font-size: 0.98rem;
+    color: var(--muted);
+    line-height: 1.75;
+    margin: 0 0 1rem;
+  }
+  .r-body p:last-child { margin-bottom: 0; }
+
+  .r-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem 2rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--panel);
+  }
+  .r-detail { display: flex; flex-direction: column; gap: 0.2rem; }
+  .d-label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .d-val {
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+
+  .r-link {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .r-link:hover { color: var(--accent); }
+
+  .result {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+  .result-stat {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--accent);
+  }
+  .result-detail {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .contact-strip {
+    border-top: 1px solid var(--line);
+    padding: 2.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .contact-strip p {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin: 0;
+  }
+  .contact-strip a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .contact-strip a:hover { color: var(--accent); border-color: var(--accent); }
+</style>

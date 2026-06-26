@@ -1,0 +1,68 @@
+\documentclass[letterpaper,10.5pt]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{charter}        % comment this line out if it fails to compile
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\setcounter{secnumdepth}{0}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\titleformat{\section}{\large\scshape\bfseries}{}{0em}{}[\vspace{-3pt}\titlerule\vspace{-1pt}]
+\titlespacing{\section}{0pt}{7pt}{3pt}
+\setlist[itemize]{leftmargin=1.3em,itemsep=1pt,topsep=1pt,parsep=0pt,label=\textbullet}
+
+\newcommand{\entry}[4]{\textbf{#1}\hfill{\small #2}\\\textit{\small #3}\hfill{\small #4}\par\vspace{1pt}}
+
+\begin{document}
+
+{\centering
+{\LARGE\bfseries Konrad Trestka}\\[3pt]
+{\small Chicago, IL ~$\cdot$~ 773-606-0109 ~$\cdot$~ \href{mailto:ktrestka05@gmail.com}{ktrestka05@gmail.com} ~$\cdot$~ \href{https://github.com/KonradT22}{github.com/KonradT22} ~$\cdot$~ \href{https://www.linkedin.com/in/konrad-trestka-dev}{linkedin.com/in/konrad-trestka-dev}}\par}
+\vspace{2pt}
+
+\section{Education}
+\entry{University of Minnesota Twin Cities, College of Science and Engineering}{Minneapolis, MN}{B.S. Computer Science \& B.S. Data Science}{Expected May 2027}
+{\small GPA: 3.75, Dean's List \quad$\cdot$\quad Languages: English, Polish \\
+Relevant Coursework: Practice of Database Systems, Data Structures \& Algorithms, Regression \& Statistical Computing, Software Engineering}
+
+\section{Skills}
+{\small \textbf{Languages:} SQL, Python, JavaScript/TypeScript, Ruby, Java, R, Bash \\
+\textbf{Data \& Cloud:} Azure Data Factory (ADF), Azure SQL, Azure Blob Storage, ETL/ELT, stored procedures, REST APIs, JSON, Docker, pandas, SQLite \\
+\textbf{Tools:} Git/GitHub, Linux/Ubuntu, rsync, Nginx, Transparent Data Encryption (TDE)}
+
+\section{Work Experience}
+\entry{Data Engineer Intern}{Sep 2025 -- Present}{PURIS}{Minneapolis, MN}
+\begin{itemize}
+  \item Designed Azure SQL tables and stored procedures for complex JSON parsing and idempotent upserts to support an evolving production schema.
+  \item Built and maintained a production-grade ETL pipeline in Azure Data Factory (ADF) that triggers daily, pulling JSON payloads via REST API into Azure SQL.
+  \item Engineered an OT/IT data pipeline extracting high-frequency time-series metrics from a VantagePoint historian database into an encrypted SQL backend.
+  \item Orchestrated a zero-downtime migration of a critical Operational Technology (OT) testing application from a legacy MSP-hosted environment to a new internal SQL Server, securely transferring user logins and TDE encryption keys via a parallel-run cutover.
+  \item Refactored a macro-enabled (VBA) Excel client --- updating SQL connection strings, removing hardcoded IP dependencies, and resolving authentication bugs --- to reliably capture and upload validated time-series data.
+  \item Preserved 12.3 GB / 119,000+ files of historical corporate data by staging and uploading to Azure Blob Storage with a validated local audit vault.
+\end{itemize}
+
+\entry{Software Engineer Intern}{May 2024 -- Dec 2024}{Fine Global Assets}{Chicago, IL}
+\begin{itemize}
+  \item Designed and developed the corporate website using React and Node.js, improving user engagement by 25\% and retention by 15\%.
+  \item Integrated the Shopify API to launch an e-commerce platform for a company affiliate, streamlining online retail operations.
+\end{itemize}
+
+\section{Projects}
+\entry{AJAP --- Self-Hosted Data Pipeline}{}{Python, Flask, APScheduler, SQLite, LLM API}{}
+\begin{itemize}
+  \item Built an ingest $\rightarrow$ classify $\rightarrow$ store $\rightarrow$ alert pipeline that pulls roles from multiple sources, normalizes and classifies them via an LLM API into SQLite, and syncs to Google Sheets with batched Discord alerts.
+  \item Scheduled the pipeline as a continuous Linux daemon (APScheduler) with persistent state to avoid duplicate processing across restarts.
+\end{itemize}
+
+\entry{Algorithmic Trading Backtester}{}{Python, pandas, yfinance}{}
+\begin{itemize}
+  \item Engineered a Python data pipeline that ingests, cleans, and structures market data via the yfinance API into pandas DataFrames for strategy evaluation.
+\end{itemize}
+
+\section{Awards \& Activities}
+{\small 1st Place, Quantitative Trading Competition (Financial Mathematics Association) \quad$\cdot$\quad Dean's List \quad$\cdot$\quad Google Developer Student Club, Social Coding}
+
+\end{document}

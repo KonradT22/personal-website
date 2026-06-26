@@ -1,0 +1,65 @@
+\documentclass[letterpaper,10.5pt]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\setcounter{secnumdepth}{0}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\titleformat{\section}{\large\scshape\bfseries}{}{0em}{}[\vspace{-3pt}\titlerule\vspace{-1pt}]
+\titlespacing{\section}{0pt}{7pt}{3pt}
+\setlist[itemize]{leftmargin=1.3em,itemsep=1pt,topsep=1pt,parsep=0pt,label=\textbullet}
+\newcommand{\entry}[4]{\textbf{#1}\hfill{\small #2}\\\textit{\small #3}\hfill{\small #4}\par\vspace{1pt}}
+
+\begin{document}
+
+{\centering
+{\LARGE\bfseries Konrad Trestka}\\[3pt]
+{\small Chicago, IL ~$\cdot$~ 773-606-0109 ~$\cdot$~ \href{mailto:ktrestka05@gmail.com}{ktrestka05@gmail.com} ~$\cdot$~ \href{https://github.com/KonradT22}{github.com/KonradT22} ~$\cdot$~ \href{https://www.linkedin.com/in/konrad-trestka-dev}{linkedin.com/in/konrad-trestka-dev}}\par}
+\vspace{2pt}
+
+\section{Education}
+\entry{University of Minnesota Twin Cities, College of Science and Engineering}{Minneapolis, MN}{B.S. Computer Science \& B.S. Data Science}{Expected May 2027}
+{\small GPA: 3.75, Dean's List \quad$\cdot$\quad Languages: English, Polish \\
+Relevant Coursework: Applied Machine Learning, Optimization for Machine Learning, Regression \& Statistical Computing, Data Structures \& Algorithms, Machine Architecture \& Organization}
+
+\section{Skills}
+{\small \textbf{Languages:} Python, SQL, C/C++, Java, R \\
+\textbf{Machine Learning:} PyTorch, neural networks, deep learning, NLP / embeddings (sentence-transformers), Monte Carlo simulation, time-series modeling, feature engineering, model evaluation \\
+\textbf{Data \& Tooling:} pandas, NumPy, Matplotlib, Jupyter, Docker, Azure, HPC/SLURM, REST APIs, Git/GitHub}
+
+\section{Experience}
+\entry{Undergraduate Student Researcher, Quantitative Derivatives}{Jun 2026 -- Present}{University of Minnesota}{Minneapolis, MN}
+\begin{itemize}
+  \item Built and trained an Artificial Neural Network (ANN) surrogate to price options as a fast approximation of a 4-factor Markovian Path-Dependent Volatility (PDV) model.
+  \item Generated large-scale training data via Monte Carlo simulation on university supercomputers (HPC/SLURM), training on simulated S\&P 500 market states.
+  \item Engineered no-arbitrage (SVI/SSVI) guardrails that detect out-of-distribution inputs and fall back to the baseline model --- building model safety and monitoring directly into the inference path.
+  \item Evaluated accuracy, latency, and stability trade-offs of the surrogate under streaming, real-time inputs.
+\end{itemize}
+
+\entry{Data Engineer Intern}{Sep 2025 -- Present}{PURIS}{Minneapolis, MN}
+\begin{itemize}
+  \item Built automated ETL pipelines (Azure Data Factory $\rightarrow$ Azure SQL) producing clean, structured datasets for downstream analytics and modeling.
+  \item Extracted and validated high-frequency time-series data from historian databases into a centralized SQL backend.
+\end{itemize}
+
+\section{Projects \& Awards}
+\entry{Text Classification: Embeddings vs. LLM (Applied ML)}{}{Python, PyTorch, sentence-transformers}{}
+\begin{itemize}
+  \item Trained a transformer-embedding classifier (sentence-transformers + PyTorch MLP) and benchmarked it against zero-shot LLM classification on a 77-class banking-intent dataset, reaching $\sim$93\% vs $\sim$81\% accuracy.
+  \item Built the feature-extraction and evaluation pipeline, analyzing the cost/accuracy trade-off between fine-tuned embeddings and a general-purpose LLM.
+\end{itemize}
+
+\entry{AJAP --- LLM Classification Pipeline}{}{Python, Gemini API, Flask, SQLite}{}
+\begin{itemize}
+  \item Built an ingest $\rightarrow$ classify $\rightarrow$ serve pipeline that normalizes text data, classifies it via an LLM API, persists results to SQLite, and surfaces them through a dashboard; runs continuously as a scheduled service.
+\end{itemize}
+
+\entry{1st Place --- Quantitative Trading Competition}{}{Financial Mathematics Association (judged by DRW \& Cargill)}{}
+\begin{itemize}
+  \item Designed and deployed an automated, signal-driven trading model with risk controls, achieving a 0.00\% maximum drawdown in live forward-testing.
+\end{itemize}
+
+\end{document}

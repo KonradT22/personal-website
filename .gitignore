@@ -20,5 +20,11 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# LaTeX source lives in resumes-source/ — guard against accidentally restoring in public/
+/public/resumes/tex/
+
 # jetbrains setting folder
 .idea/
+
+# Wrangler local dev state
+.wrangler/
