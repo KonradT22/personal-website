@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "yarn next dev",
     "build": "yarn next build",
+    "pages:build": "yarn next build && yarn next export",
     "start": "yarn next start",
     "lint": "yarn next lint"
   },
