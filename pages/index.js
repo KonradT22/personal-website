@@ -59,15 +59,15 @@ export default function Home() {
             </MyHeading>
 
             <chakra.p fontSize={["md", "lg"]} lineHeight={1.9} mb={5}>
-              I'm a data engineer and infrastructure builder finishing a
+              I&apos;m a data engineer and infrastructure builder finishing a
               double degree in Computer Science and Data Science at the
               University of Minnesota (May 2027).
             </chakra.p>
 
             <chakra.p fontSize={["md", "lg"]} lineHeight={1.9} mb={5}>
-              I'm currently interning at <chakra.b>PURIS</chakra.b>, where
-              I've built ETL pipelines, migrated production workloads with
-              zero data loss, and led a firewall cutover across multiple
+              I&apos;m currently interning at <chakra.b>PURIS</chakra.b>, where
+              I&apos;ve built ETL pipelines, migrated production workloads
+              with zero data loss, and led a firewall cutover across multiple
               sites.
             </chakra.p>
 
@@ -131,7 +131,7 @@ export default function Home() {
             Outside of work
           </MyHeading>
           <chakra.p fontSize={["md", "lg"]} lineHeight={1.9} mb={6} maxWidth={"640px"}>
-            When I'm not building things, I'm probably on a motorcycle, up at
+            When I&apos;m not building things, I&apos;m probably on a motorcycle, up at
             a mountain snowboarding, or out fishing.
           </chakra.p>
           <Flex gap={4} wrap={"wrap"}>

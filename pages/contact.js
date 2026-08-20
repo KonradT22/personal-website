@@ -35,11 +35,11 @@ export default function Contact() {
             ktrestka05@gmail.com
           </HighlightLink>
           . I respond to most emails, especially about full-time roles,
-          internships, research, or anything I've built.
+          internships, research, or anything I&apos;ve built.
         </chakra.p>
 
         <chakra.p fontSize={["md", "lg"]} lineHeight={1.9} mb={4}>
-          I'm on most platforms as{" "}
+          I&apos;m on most platforms as{" "}
           <chakra.b>Konrad Trestka</chakra.b>, including:
         </chakra.p>
 
@@ -64,9 +64,9 @@ export default function Contact() {
         </chakra.p>
 
         <chakra.p fontSize={["md", "lg"]} lineHeight={1.9}>
-          I'm at the University of Minnesota through May 2027 — open to 2027
-          roles and off-cycle internships. If you're hiring or just want to
-          talk shop, reach out.
+          I&apos;m at the University of Minnesota through May 2027 — open to
+          2027 roles and off-cycle internships. If you&apos;re hiring or just
+          want to talk shop, reach out.
         </chakra.p>
       </Box>
     </Box>
