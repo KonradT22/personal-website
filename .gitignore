@@ -1,10 +1,9 @@
-# build output
-dist/
-# generated types
-.astro/
-
 # dependencies
 node_modules/
+
+# next.js
+.next/
+out/
 
 # logs
 npm-debug.log*
@@ -12,9 +11,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
+.env.local
 .env.production
 
 # macOS-specific files
@@ -25,6 +24,3 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-
-# Wrangler local dev state
-.wrangler/
