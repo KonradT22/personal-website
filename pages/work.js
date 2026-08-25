@@ -48,7 +48,7 @@ const experience = [
     role: "Undergraduate Researcher — Derivatives",
     period: "Jun 2026 – Present",
     body: [
-      "Building a neural net that mimics a much slower, more accurate volatility model — basically trying to get the speed of a simple model with the accuracy of a complicated one. Advised by John Dodson.",
+      "Building a neural net that acts like a fast digital twin for a much slower path-dependent volatility model. The goal is to get close to the accuracy of the full model while making calibration fast enough for real-time use. Advised by John Dodson.",
     ],
   },
   {
@@ -92,7 +92,7 @@ const projects = [
   {
     title: "Neural Surrogates for Path-Dependent Volatility",
     tagline: "Undergraduate derivatives research",
-    body: "A neural net that learns to mimic a much slower, more accurate options-pricing model — speed of a simple model, accuracy of a complicated one. Built in some guardrails so it falls back to the slow model if it starts drifting.",
+    body: "A neural net that mimics a much slower options-pricing model — basically trying to get the speed of a simple model with the accuracy of a complicated one. Added guardrails so it knows when to stop trusting itself and fall back to the full model.",
     links: [
       { label: "Github", href: "https://github.com/KonradT22/VolatilityIsMostlyPathDependent" },
     ],
