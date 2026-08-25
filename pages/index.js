@@ -65,7 +65,7 @@ export default function Home() {
 
             <chakra.p fontSize={["md", "lg"]} lineHeight={1.9} mb={5}>
               I&apos;m a data engineer and infrastructure builder finishing a
-              double degree in Computer Science and Data Science at the
+              double major in Computer Science and Data Science at the
               University of Minnesota (May 2027).
             </chakra.p>
 
