@@ -35,11 +35,16 @@ export default function Home() {
         <title>Konrad Trestka</title>
         <meta name="description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://konradical.dev/" />
         <meta property="og:title" content="Konrad Trestka" />
         <meta property="og:description" content={DESCRIPTION} />
+        <meta property="og:image" content="https://konradical.dev/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Konrad Trestka" />
         <meta name="twitter:description" content={DESCRIPTION} />
+        <meta name="twitter:image" content="https://konradical.dev/og-image.png" />
       </Head>
 
       <main>
