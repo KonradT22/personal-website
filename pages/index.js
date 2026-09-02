@@ -99,7 +99,7 @@ export default function Home() {
               Check out my <HighlightLink href="/work#projects">projects</HighlightLink> or
               grab my{" "}
               <HighlightLink
-                href="/resumes/Data_Resume_Konrad_Trestka_Summer_2026.pdf"
+                href="/resumes/Data_Resume_Konrad_Trestka_Fall_2026_Redacted.pdf"
                 target="_blank"
                 rel="noopener noreferrer">
                 résumé
