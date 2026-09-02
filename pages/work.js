@@ -45,10 +45,10 @@ const experience = [
   {
     org: "University of Minnesota",
     logo: "/img/logos/umn.png",
-    role: "Undergraduate Researcher — Derivatives",
-    period: "Jun 2026 – Present",
+    role: "Undergraduate Researcher — Derivatives (UROP)",
+    period: "May 2026 – Aug 2026",
     body: [
-      "Building a neural net that acts like a fast digital twin for a much slower path-dependent volatility model. The goal is to get close to the accuracy of the full model while making calibration fast enough for real-time use. Advised by John Dodson.",
+      "Built a neural net that acts like a fast digital twin for a much slower path-dependent volatility model, getting close to the accuracy of the full model while making calibration fast enough for real-time use. Advised by John Dodson.",
     ],
   },
   {

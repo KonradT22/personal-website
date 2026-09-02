@@ -77,7 +77,7 @@ export default function Home() {
             </chakra.p>
 
             <chakra.p fontSize={["md", "lg"]} lineHeight={1.9} mb={5}>
-              I also do undergraduate{" "}
+              I also did a summer UROP in{" "}
               <HighlightLink href="https://github.com/KonradT22/VolatilityIsMostlyPathDependent">
                 derivatives research
               </HighlightLink>{" "}
