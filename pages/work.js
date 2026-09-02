@@ -43,21 +43,21 @@ const CompanyIcon = ({ logo, bg, children }) => (
 
 const experience = [
   {
+    org: "PURIS",
+    logo: "/img/logos/puris.png",
+    role: "Data Engineer Intern → Systems & Infrastructure",
+    period: "Aug 2025 – Present",
+    body: [
+      "A bit of everything on the systems side — pipelines, database migrations, network stuff. Whatever infra problem shows up, I'm probably the one on it.",
+    ],
+  },
+  {
     org: "University of Minnesota",
     logo: "/img/logos/umn.png",
     role: "Undergraduate Researcher — Derivatives (UROP)",
     period: "May 2026 – Aug 2026",
     body: [
       "Built a neural net that acts like a fast digital twin for a much slower path-dependent volatility model, getting close to the accuracy of the full model while making calibration fast enough for real-time use. Advised by John Dodson.",
-    ],
-  },
-  {
-    org: "PURIS",
-    logo: "/img/logos/puris.png",
-    role: "Data Engineer Intern → Systems & Infrastructure",
-    period: "Sep 2025 – Present",
-    body: [
-      "A bit of everything on the systems side — pipelines, database migrations, network stuff. Whatever infra problem shows up, I'm probably the one on it.",
     ],
   },
   {
