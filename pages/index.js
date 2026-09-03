@@ -83,7 +83,7 @@ export default function Home() {
               </HighlightLink>{" "}
               — building neural-network surrogate pricers for path-dependent
               volatility models — and took 1st place at the FMA Quantitative
-              Trading Competition, judged by DRW and Cargill, with a{" "}
+              Trading Competition, judged by DRW, Cargill, and OCC, with a{" "}
               <HighlightLink href="https://github.com/KonradT22/FMA-TRADING-COMP-OptimizationStation">
                 trading engine
               </HighlightLink>{" "}

@@ -84,7 +84,7 @@ const projects = [
   {
     title: "Quantitative Trading Engine",
     tagline: "1st place — FMA Quantitative Trading Competition",
-    body: "An event-driven trading bot I built and live-traded for the competition — momentum signals, automatic stop-losses, the works. Judged by folks from DRW and Cargill, and it never lost money live.",
+    body: "An event-driven trading bot I built and live-traded for the competition — momentum signals, automatic stop-losses, the works. Judged by folks from DRW, Cargill, and OCC, and it never lost money live.",
     links: [
       { label: "Github", href: "https://github.com/KonradT22/FMA-TRADING-COMP-OptimizationStation" },
     ],
